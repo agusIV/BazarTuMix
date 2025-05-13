@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Pompiere&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Pompiere", serif;
+    background-color: #FCFAEE;
+}
+#root{
+    min-width: 1100px;
+}
+
+/*
+verde #A5B68D
+oscuro #ECDFCC
+claro #FCFAEE
+naranja #DA8359
+marron #7b3911
+*/

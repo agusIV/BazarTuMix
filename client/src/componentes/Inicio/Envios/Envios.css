@@ -1,0 +1,23 @@
+#envios{
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    height: 500px;
+    width: 80%;  
+}
+#infoEnvios{
+    width: 50%;
+    text-align: center;
+    margin-top: 75px;
+}
+#infoEnvios p{
+    font-size: 40px;
+}
+#infoEnviosTitulo{
+    font-size: 50px;
+}
+#mapa{
+    z-index: 1;
+    width: 50%;
+    height: 80%;
+}

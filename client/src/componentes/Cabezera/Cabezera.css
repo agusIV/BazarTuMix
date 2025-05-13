@@ -1,0 +1,110 @@
+#cabezera{
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    background-color: rgb(218, 131, 89, 1);
+    width: 100%;
+    height: 100px;
+    color: white;
+    min-width: 1100px;
+}
+#cabezera div{
+    flex: 1;
+}
+/*---------------------------*/
+#titulo{
+    justify-content: flex-start;
+    font-size: 50px;
+    text-align: center;
+}
+/*---------------------------*/
+#buscador{
+    position: relative;
+    display: flex;
+    height: 50%;
+    border-radius: 999px;
+    border: 2px solid white;
+}
+#entrada{
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    padding: 0 20px;
+}
+#entrada::placeholder{
+    color: white;
+}
+#entrada:hover::placeholder{
+    color: #7b3911;
+}
+#entrada:-webkit-autofill{
+    box-shadow: 0 0 0px 1000px #DA8359 inset !important; /* fondo igual al input */
+    -webkit-text-fill-color: white !important; /* texto blanco */
+    border-radius: 999px;
+    transition: background-color 9999s ease-in-out 0s;
+    font-size: 20px;
+}
+.icono-boton{
+    background: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.2s ease;
+}
+.icono-boton:hover {
+    color: #7b3911;
+}
+#borrar{
+    border: none;
+}
+#buscar{
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    border-color: white;
+    padding-left: 10px;
+    padding-right: 15px;
+}
+#busqueda{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    color: #DA8359;
+    background-color: white;
+    font-size: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+.opcion:hover{
+    background-color: gray;
+    list-style-type: none;
+}
+/*---------------------------*/
+#derecha{
+    display: flex;
+    justify-content: flex-end;
+}
+#derecha div{
+    flex: 1;
+}
+#productos{
+    font-size: 40px;
+    text-align: center;
+}
+#redes{
+    font-size: 40px;
+}
+/*---------------------------*/
+.botonesCabezera{
+    cursor: pointer;
+}
+.botonesCabezera:hover{
+    color: #7b3911;
+}

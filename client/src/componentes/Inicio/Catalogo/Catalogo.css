@@ -1,0 +1,33 @@
+#catalogo{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+#tituloProductos{
+    font-size: 50px;
+}
+#secciones{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 25px;
+}
+#secciones div{
+    width: 20%;
+    border: 2px solid black;
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+}
+#secciones div:hover{
+    transform: scale(1.1);
+}
+#secciones img{
+    width: 100%;
+}
+#secciones span{
+    display: block;
+    background-color: #7b391180;
+    margin-top: -5px;
+    font-size: 40px;
+}

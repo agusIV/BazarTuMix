@@ -5,16 +5,19 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Pompiere", serif;
-    background-color: #FCFAEE;
+    background-color: #ff914d;
 }
 #root{
     min-width: 1100px;
+    height: 100%;
 }
 
 /*
-verde #A5B68D
-oscuro #ECDFCC
-claro #FCFAEE
-naranja #DA8359
-marron #7b3911
+nuevos colores
+naranja 
+#ff914d claro
+#ed8330 medio
+#d6670c oscuro
+marron
+#2b2515
 */

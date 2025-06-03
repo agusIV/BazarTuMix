@@ -1,33 +1,48 @@
 #catalogo{
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 50px;
+    width: 1100px;
+    margin: 150px auto 0;
     text-align: center;
+    color: #322617;
+    box-shadow: 0 0 5px 1px #322617;
+    border-radius: 25px;
+    overflow: hidden;
 }
-#tituloProductos{
+#catalogoTitulo{
+    background-color: #ed8330;
+    width: 100%;
     font-size: 50px;
+    font-weight: bold;
+    padding: 20px 0px 10px 0px;
 }
-#secciones{
+#catalogoSecciones{
+    background-color: #d6670c;
+    padding: 25px 0px 25px 0px;
+    position: relative;
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
-    margin-top: 25px;
 }
-#secciones div{
-    width: 20%;
-    border: 2px solid black;
-    transition: transform 0.5s ease-in-out;
+.catalogoCategoria{
+    width: 164px;
+    height: 218px;
+    border: 1px solid #322617;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.1s ease-in-out;
     cursor: pointer;
 }
-#secciones div:hover{
+.catalogoCategoria:hover{
     transform: scale(1.1);
 }
-#secciones img{
+.catalogoImagen{
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
-#secciones span{
-    display: block;
-    background-color: #7b391180;
-    margin-top: -5px;
-    font-size: 40px;
+.catalogoNombre{
+    position: relative;
+    margin-top: -50px;
+    font-size: 26px;
+    background-color: white;
+    z-index: 10;
 }

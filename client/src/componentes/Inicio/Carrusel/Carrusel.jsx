@@ -7,6 +7,8 @@ const imagenes = importarImagenes(
 )
 
 export default function Carrusel() {
+    
+    
     const carruselRef = useRef(null)
     const [pos, setPos] = useState(0)
 
@@ -30,7 +32,7 @@ export default function Carrusel() {
     }, [])
 
     return (
-        <div id="destacado">
+        <div id="carruselDestacado">
             <div ref={carruselRef} id="carrusel">
                 {imagenes.map((src) => (
                     <div id="slide">

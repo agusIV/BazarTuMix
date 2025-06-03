@@ -1,14 +1,13 @@
-import "./Cabezera.css"
-import Inicio from "../Inicio"
-import Lista from "../Lista"
-import Producto from "../Producto"
-import React, {useState} from "react"
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import "./cabezera.css"
+import {useState} from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function Cabezera(lista) {
+    const token = localStorage.getItem("token")
     const [busqueda, setBusqueda] = useState("")
     const [buscando, setBuscando] = useState(false)
     const navigate = useNavigate()
+    
     const filtrados = lista.parametro.filter(p =>
         p.id.toLowerCase().includes(busqueda.toLowerCase())
     )
@@ -17,14 +16,26 @@ export default function Cabezera(lista) {
         navigate(`/producto`, {state: {producto}})
     }
 
+    const cerrarSesion = () => {
+        localStorage.removeItem("token")
+        window.location.reload()
+    }
+
     return (
         <>
         <div id="cabezera">
-            <div id="titulo">
-                <span onClick={() => navigate("/")} className="botonesCabezera">Bazar TuMix</span>
+            <div id="cabezeraIzquierda">
+                <div id="cabezeraLogo" onClick={() => navigate("/")}>
+                    <img className="cabezeraBotones" src="imagenes/logo.png" alt="" />
+                </div>
+                <div id="cabezeraProductos">
+                    <span className="cabezeraBotones" onClick={() => navigate("/Lista")}>
+                        Productos
+                    </span>
+                </div>
             </div>
-            <div id="buscador">
-                <input id="entrada" 
+            <div id="cabezeraBuscador">
+                <input id="cabezeraEntrada" 
                     type="text" 
                     placeholder="Buscar producto" 
                     value={busqueda} 
@@ -33,40 +44,45 @@ export default function Cabezera(lista) {
                     onBlur={() => setTimeout(() => setBuscando(false), 150)}//delay para permitir click
                 />
                 {buscando && busqueda.length > 0 && (
-                    <ul id="busqueda">
+                    <ul id="cabezeraBusqueda">
                         {filtrados.map(p => ( 
-                            <li className="opcion" onClick={() => irAProducto(p)} style={{padding: "5px", cursor: "pointer"}}>
+                            <li className="cabezeraOpcion" onClick={() => irAProducto(p)}>
                                 {p.id}
                             </li>
                         ))}
                         {filtrados.length === 0 && (
-                            <li style={{ padding: "5px", color: "#888" }}>Sin resultados</li>
+                            <li className="cabezeraOpcion">Sin resultados</li>
                         )}
                     </ul>
                 )}
-                <button className="icono-boton" id="borrar" onClick={() => setBusqueda("")}>  
+                <button className="icono-boton cabezeraBotones" id="cabezeraBorrar" onClick={() => setBusqueda("")}>  
                     <i className="fas fa-times"></i>
                 </button>
-                <button className="icono-boton" id="buscar">
+                <button className="icono-boton cabezeraBotones" id="cabezeraBuscar" onClick={() => navigate("/Lista", {state:{filtrados}})}>
                     <i className="fas fa-search"></i>
                 </button>
             </div>
-            <div id="derecha">
-                <div id="productos">
-                    <span className="botonesCabezera" onClick={() => navigate("/Lista")}>
-                        Productos
-                    </span>
-                </div>
-                <div id="redes">
-                    <span className="botonesCabezera">Redes Sociales</span>
+            <div id="cabezeraDerecha">
+                {token ? (
+                    <div id="cabezeraCerrar">
+                        <span className="cabezeraBotones" onClick={cerrarSesion}>Cerrar Sesion</span>
+                    </div>
+                ) : (<>
+                    <div id="cabezeraCrear">
+                        <span className="cabezeraBotones" onClick={() => navigate("/Crear")}>Crear Cuenta</span>
+                    </div>
+                    <div id="cabezeraIniciar">
+                        <span className="cabezeraBotones" onClick={() => navigate("/Iniciar")}>Iniciar Sesion</span>
+                    </div>
+                </>)}
+                <div id="cabezeraCarrito">
+                    <div className="cabezeraBotones" onClick={() => navigate("/Carrito")}>
+                        <i id="cabezeraIcono" className="fas fa-shopping-cart"></i>
+                        <span>Carrito</span>
+                    </div>
                 </div>
             </div>   
         </div>    
-        <Routes>
-            <Route path="/" element={<Inicio/>}/>
-            <Route path="/Lista" element={<Lista parametro={lista.parametro}/>}/>
-            <Route path="/Producto" element={<Producto/>}/>
-        </Routes>
         </>
     )
 }

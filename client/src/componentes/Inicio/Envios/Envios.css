@@ -1,23 +1,35 @@
 #envios{
-    display: flex;
-    margin: 0 auto;
-    margin-top: 50px;
-    height: 500px;
-    width: 80%;  
-}
-#infoEnvios{
-    width: 50%;
+    margin: 50px auto 100px;
+    width: 1100px;  
+    height: 440px;
+    color: #322617;
+    position: relative;
     text-align: center;
-    margin-top: 75px;
+    box-shadow: 0 0 5px 1px #322617;
+    border-radius: 25px;
+    overflow: hidden;
 }
-#infoEnvios p{
-    font-size: 40px;
-}
-#infoEnviosTitulo{
+#enviosTitulo{
+    background-color: #ed8330;
+    width: 100%;
     font-size: 50px;
+    font-weight: bold;
+    padding: 20px 0px 10px 0px;
+}
+#enviosInfo{
+    background-color: #d6670c;
+    padding: 25px 0px 25px 0px;
+    position: relative;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+#enviosTexto{
+    width: 50%;
+    font-size: 30px;
 }
 #mapa{
-    z-index: 1;
-    width: 50%;
-    height: 80%;
+    width: 400px;
+    height: 300px;
 }

@@ -41,7 +41,7 @@ app.post("/Crear", async (req, res) => {
     const hash = await bcrypt.hash(contraseña, 10)
     const nuevoUsuario = {nombre, email, contraseña: hash}
     usuarios.push(nuevoUsuario)
-
+    console.log(usuarios);
     res.status(201).json({mensaje: "usuario creado correctamente"})
 })
 

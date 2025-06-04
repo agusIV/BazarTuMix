@@ -7,7 +7,7 @@ import Crear from "./componentes/Crear"
 import Iniciar from "./componentes/Iniciar"
 import Carrito from "./componentes/Carrito"
 import Producto from "./componentes/Producto"
-import { Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {useState, useEffect} from "react"
 
 import Pie from "./componentes/Pie"
@@ -26,7 +26,7 @@ function App() {
     }, [])
 
     if (!cargando) return (
-        <>
+        <BrowserRouter>
             <ScrollToTop/>
             <Cabezera parametro={lista}/>
             <Routes>
@@ -38,7 +38,7 @@ function App() {
                 <Route path="/Producto" element={<Producto/>}/>
             </Routes>
             <Pie/>
-        </>
+        </BrowserRouter>
     );
     return(
         <div>
@@ -48,7 +48,3 @@ function App() {
 }
 
 export default App;
-/*
-<BrowserRouter>
-</BrowserRouter>
-*/

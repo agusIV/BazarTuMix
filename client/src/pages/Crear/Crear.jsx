@@ -1,20 +1,30 @@
 import "./crear.css"
 import { useState } from "react"
+import {useUsuario} from "../../contextAPI/UsuarioContex"
+import { crearUsuario } from "../../services/usuarioServices"
+
 export default function Crear(){
+    const {carrito} = useUsuario()
     const [nombre, setNombre] = useState("")
     const [email, setEmail] = useState("")
     const [contraseña, setContraseña] = useState("")
     const [mensaje, setMensaje] = useState("")
 
     const manejarRegistro = async () => {
-        const res = await fetch("http://localhost:3000/Crear", {
+        /*const res = await fetch("http://localhost:5000/Crear", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({nombre ,email, contraseña})
+            body: JSON.stringify({nombre ,email, contraseña, carrito})
         })
 
         const data = await res.json()
-        setMensaje(data.mensaje)
+        setMensaje(data.mensaje)*/
+        try {
+            const {mensaje} = await crearUsuario(nombre, email, contraseña, carrito)
+            setMensaje(mensaje)
+        }catch (error) {
+            setMensaje(error.response?.data?.mensaje)
+        }
     }
     
     return(

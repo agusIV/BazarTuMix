@@ -120,11 +120,21 @@
     width: 200px;
 }
 #cabezeraCarrito{
+    position: relative;
     width: 26%;
     display: flex;
 }
 #cabezeraIcono{
     font-size: 30px;
+}
+#cabezeraCantidad{
+    position: absolute;
+    background-color: #ff914d;
+    border-radius: 999px;
+    padding: 0px 8px 0px 8px;
+    font-size: 20px;
+    left: 6px;
+    top:-2px;
 }
 /*---------------------------*/
 .cabezeraBotones{

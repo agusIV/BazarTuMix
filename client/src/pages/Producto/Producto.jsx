@@ -1,10 +1,10 @@
 import "./producto.css"
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {useCarrito} from "../CarritoContextAPI"
+import {useUsuario} from "../../contextAPI/UsuarioContex"
 
 export default function Producto(){
-    const {agregarAlCarrito} = useCarrito()
+    const {carrito, agregarAlCarrito} = useUsuario()
     const navigate = useNavigate()
     const location = useLocation()
     const producto = location.state.producto
@@ -12,6 +12,13 @@ export default function Producto(){
     const [pesoFinal, setPeso] = useState(0)
     const [cantidadFinal, setCantidad] = useState([0,0,0,0]) 
 
+    useEffect(() => {
+        const ped = carrito.find(p => p.id === producto.id)
+        if (ped != undefined){
+            setCantidad(ped.cantidad)
+        }
+    }, [carrito])
+    
     useEffect(() => {
         calcular()
     }, [cantidadFinal])
@@ -54,7 +61,9 @@ export default function Producto(){
         const pedido = {
             id: producto.id,
             precio: precioFinal,
-            peso: pesoFinal
+            peso: pesoFinal,
+            cantidad: cantidadFinal,
+            imagen: producto.imagenes
         }
         agregarAlCarrito(pedido)
         if (a === "ahora") navigate("/Carrito")
@@ -122,10 +131,9 @@ export default function Producto(){
                         onBlur={() => resetInput(0)}
                     />
                     <div id="resultado">total: {pesoFinal}KG: ${precioFinal}</div>
-                    <div id="productoComprar" onClick={() => agregar("ahora")}>comprar ahora</div>
-                    <div id="productoAgregar" onClick={() => agregar("")}>agregar al carrito</div>
+                    <div id="productoComprar" onClick={() => {if(!cantidadFinal.every(num => num === 0)) agregar("ahora")}}>comprar ahora</div>
+                    <div id="productoAgregar" onClick={() => {if(!cantidadFinal.every(num => num === 0)) agregar("")}}>agregar al carrito</div>
                 </div>    
-                
             </div>
             <div id="productoDescripcion">
                 {producto.descripcion}

@@ -1,27 +1,28 @@
 import "./iniciar.css"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { useUsuario } from "../../contextAPI/UsuarioContex";
+import { iniciarSesion } from "../../services/usuarioServices";
 
 export default function Iniciar(){
     const [email, setEmail] = useState("")
     const [contraseña, setContraseña] = useState("")
     const [mensaje, setMensaje] = useState("")
+    const {iniciar} = useUsuario()
     const navigate = useNavigate()
 
     const manejarInicio = async () => {
-        const res = await fetch("http://localhost:3000/Iniciar", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({email, contraseña})
-        })
-        const data = await res.json()
-        if (res.ok) {
-            localStorage.setItem("token", data.token) 
+        try {
+            const {mensaje, usuarioSinContraseña, token} = await iniciarSesion(email, contraseña)
+            setMensaje(mensaje)
+            iniciar(usuarioSinContraseña)
+            localStorage.setItem("token", token)
             setTimeout(() => {
                 navigate("/")
             }, 5000)
+        } catch (error) {
+            setMensaje(error.response?.data?.mensaje)
         }
-        setMensaje(data.mensaje + ", redireccionando...")
     }
     
     return(

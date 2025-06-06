@@ -33,15 +33,16 @@ app.get('/api', (req, res) => {
 });
 
 app.post("/Crear", async (req, res) => {
-    const {nombre, email, contraseña} = req.body
+    console.log("/Crear", req.body);
+    
+    const {nombre, email, contraseña, carrito} = req.body
     if (usuarios.find(u => u.email === email)) {
         return res.status(400).json({mensaje: "ya existe un usuario con ese e-mail"})
     }
 
     const hash = await bcrypt.hash(contraseña, 10)
-    const nuevoUsuario = {nombre, email, contraseña: hash}
+    const nuevoUsuario = {nombre, email, contraseña: hash, carrito}
     usuarios.push(nuevoUsuario)
-    console.log(usuarios);
     res.status(201).json({mensaje: "usuario creado correctamente"})
 })
 
@@ -55,14 +56,36 @@ app.post("/Iniciar", async (req, res) => {
 
     const coincide = await bcrypt.compare(contraseña, usuario.contraseña)
     if(!coincide){
-        return res.status(401).json({emnsaje: "credenciales invalidas"})
+        return res.status(401).json({mensaje: "credenciales invalidas"})
     }
 
     const token = jwt.sign({email: usuario.email, nombre:usuario.nombre}, SECRETO, {
         expiresIn: "1h"
     })
 
-    res.json({mensaje: "inicio de sesion exitoso"})
+    const usuarioSinContraseña = {
+        nombre: usuario.nombre,
+        email: usuario.email,
+        carrito: usuario.carrito
+    }
+
+    res.json({mensaje: "inicio de sesion exitoso", token, usuarioSinContraseña})
+})
+
+app.post("/Usuario", (req, res) => {
+    const auth = req.headers.authorization
+    if (!auth || !auth.startsWith("Bearer")) {
+        return res.status(401).json({mennsaje: "No autorizado"})
+    }
+
+    const token = auth.split(" ")[1]
+    try {
+        const decoded = jwt.verify(token, SECRETO)
+        const usuario = usuarios.find(u => u.email === decoded.email)
+        res.json({usuario})
+    } catch (err) {
+        res.status(401).json({mensaje: "token invalido"})
+    }
 })
 
 const port = process.env.PORT || 5000;

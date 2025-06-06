@@ -2,13 +2,10 @@ import "./Carrusel.css";
 import { useEffect, useRef, useState } from "react";
 import {importarImagenes} from "./cargarImagenes"
 
-const imagenes = importarImagenes(
-    require.context("../../imagenes", false, /\.(png|jpe?g|svg)$/)
-)
+const modulos = import.meta.glob('./imagenes/*.{png,jpg,jpeg,svg}', { eager: true })
+const imagenes = importarImagenes(modulos)
 
 export default function Carrusel() {
-    
-    
     const carruselRef = useRef(null)
     const [pos, setPos] = useState(0)
 
@@ -38,7 +35,6 @@ export default function Carrusel() {
                     <div id="slide">
                         <img src={src}/>
                     </div>
-                    
                 ))}
             </div>
             <div id="botonesCarrusel">

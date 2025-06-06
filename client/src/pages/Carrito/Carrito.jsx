@@ -1,9 +1,8 @@
 import "./carrito.css"
-import {useCarrito} from "../CarritoContextAPI"
+import {useUsuario} from "../../contextAPI/UsuarioContex"
 
 export default function Carrito(){
-    const {carrito, vaciarCarrito} = useCarrito()
-    console.log(carrito);
+    const {carrito, borrarDelCarrito, vaciarCarrito} = useUsuario()
     
     return(
         <div id="carrito">
@@ -14,11 +13,13 @@ export default function Carrito(){
             <div id="carritoLista">
                 {carrito.map(pedido => (
                     <div>
-                        {pedido.id}, {pedido.precio}, {pedido.peso}
+                        {pedido.imagen},{pedido.id}, {pedido.precio}, {pedido.peso}
+                        <button onClick={() => borrarDelCarrito(pedido.id)}>borrar</button>
                     </div>
                 ))}
             </div>
             <button onClick={vaciarCarrito}>vaciar carrito</button>
+            <button>comprar</button>
             </>
             )}
         </div>

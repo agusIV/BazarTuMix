@@ -1,22 +1,12 @@
-import { createContext, useContext, useState , useEffect} from "react";
+import { createContext, useContext, useState} from "react";
 
 const ListaContext = createContext()
 
-export const ListaProovedor = ({children}) => {
-    const [lista, setLista] = useState([])
-    const [cargando, setCargando] = useState(true)
-
-    useEffect(() => {
-        fetch("http://localhost:5000/api")
-            .then(res => res.json())
-            .then(data => {
-                setLista(data)
-                setCargando(false)    
-            })
-    }, [])
+export const ListaProovedor = ({children, listaInicial}) => {
+    const [lista, setLista] = useState(listaInicial)
 
     return (
-        <ListaContext.Provider value={{lista, cargando}}>
+        <ListaContext.Provider value={{lista}}>
             {children}
         </ListaContext.Provider>
     )

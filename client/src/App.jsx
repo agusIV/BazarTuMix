@@ -8,19 +8,16 @@ import Iniciar from "./pages/Iniciar"
 import Carrito from "./pages/Carrito"
 import Producto from "./pages/Producto"
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import { useLista } from "./contextAPI/ListaCotext";
 import Pie from "./pages/Pie"
 
 function App() {
-    const {lista, cargando} = useLista()
-
-    if (!cargando) return (
+    return (
         <BrowserRouter>
             <ScrollToTop/>
             <Cabezera/>
             <Routes>
                 <Route path="/" element={<Inicio/>}/>
-                <Route path="/Lista" element={<Lista lista={lista}/>}/>
+                <Route path="/Lista" element={<Lista/>}/>
                 <Route path="/Crear" element={<Crear/>}/>
                 <Route path="/Iniciar" element={<Iniciar/>}/>
                 <Route path="/Carrito" element={<Carrito/>}/>
@@ -29,11 +26,6 @@ function App() {
             <Pie/>
         </BrowserRouter>
     );
-    return(
-        <div>
-            <h1>cargando...</h1>
-        </div>
-    )
 }
 
 export default App;

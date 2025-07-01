@@ -7,7 +7,7 @@ export default function CabezeraBuscador({navigate}) {
     const {lista} = useLista()
 
     const filtrados = lista.filter(p =>
-        p.id.toLowerCase().includes(busqueda.toLowerCase())
+        p.nombre.toLowerCase().includes(busqueda.toLowerCase())
     )
 
     const irAProducto = (producto) => {
@@ -26,8 +26,8 @@ export default function CabezeraBuscador({navigate}) {
             {buscando && busqueda.length > 0 && (
                 <ul id="cabezeraBusqueda">
                     {filtrados.map(p => ( 
-                        <li className="cabezeraOpcion" onClick={() => irAProducto(p)}>
-                            {p.id}
+                        <li key={p.id} className="cabezeraOpcion" onClick={() => irAProducto(p)}>
+                            {p.nombre}
                         </li>
                     ))}
                     {filtrados.length === 0 && (

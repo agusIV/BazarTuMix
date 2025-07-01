@@ -11,19 +11,14 @@ export default function Crear(){
     const [mensaje, setMensaje] = useState("")
 
     const manejarRegistro = async () => {
-        /*const res = await fetch("http://localhost:5000/Crear", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({nombre ,email, contraseña, carrito})
-        })
-
-        const data = await res.json()
-        setMensaje(data.mensaje)*/
+        if (!nombre || !email || !contraseña) {
+            return setMensaje('Completa todos los campos');
+        }
         try {
-            const {mensaje} = await crearUsuario(nombre, email, contraseña, carrito)
+            const {mensaje} = await crearUsuario(nombre, email, contraseña)
             setMensaje(mensaje)
-        }catch (error) {
-            setMensaje(error.response?.data?.mensaje)
+        }catch (err) {
+            setMensaje(err.response?.data?.mensaje)
         }
     }
     

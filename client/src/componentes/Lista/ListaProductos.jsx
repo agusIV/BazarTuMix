@@ -2,15 +2,15 @@ import { useNavigate } from "react-router-dom"
 
 export default function ListaProductos({productosFiltrados}){
     const navigate = useNavigate()
-
+    
     return(
         <div id="listaProductos">
             {productosFiltrados.map(producto => (
                 <div className="listaProducto" key={producto.nombre} >
-                    <div className="listaImagen"><img src={producto.imagenes} onClick={() => navigate("/producto", {state: {producto}})}/></div>
+                    <div className="listaImagen"><img src={producto.imagen} onClick={() => navigate("/producto", {state: {producto}})}/></div>
                     <div className="listaInfo">
                         <div className="listaNombre">
-                            {producto.id}
+                            {producto.nombre}
                         </div>
                         <div className="listaDescripcion">
                             {producto.descripcion}

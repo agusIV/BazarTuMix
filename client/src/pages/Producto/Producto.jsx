@@ -71,11 +71,11 @@ export default function Producto(){
     return(
         <div id="productoPrincipal">
             <div id="productoImagen">
-                <img src={producto.imagenes} alt="" />
+                <img src={producto.imagen} alt="" />
             </div>
             <div id="datos">
                 <div id="productoNombre">
-                    {producto.id}
+                    {producto.nombre}
                 </div>
                 <div id="productoPrecio">
                     <div className="precios">

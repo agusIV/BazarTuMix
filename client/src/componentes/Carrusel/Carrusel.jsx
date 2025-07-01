@@ -32,7 +32,7 @@ export default function Carrusel() {
         <div id="carruselDestacado">
             <div ref={carruselRef} id="carrusel">
                 {imagenes.map((src) => (
-                    <div id="slide">
+                    <div key={src} id="slide">
                         <img src={src}/>
                     </div>
                 ))}
@@ -40,6 +40,7 @@ export default function Carrusel() {
             <div id="botonesCarrusel">
                 {imagenes.map((_, i) => (
                     <div
+                        key={i}
                         onClick={() => moverCarrusel(i)}
                         style={{backgroundColor: i === pos ? "white" : "gray"}}
                         id="botonCarrusel"

@@ -12,7 +12,7 @@ export default function ListaBuscador({lista, categoriasSeleccionadas, setCatego
     return(
         <div id="listaBuscador">
             {categorias.map(c => (
-                <div className="listaCheckBox">
+                <div key={c} className="listaCheckBox">
                     <input 
                         type="checkBox" 
                         checked={categoriasSeleccionadas.includes(c)}

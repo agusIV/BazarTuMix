@@ -4,9 +4,9 @@ client/node_modules/
 node_modules/
 
 # Environment files
-.env
-.env.*  # Por si usás múltiples archivos .env (ej: .env.development)
-
+server/.env
+.env.*  
+# Por si usás múltiples archivos .env (ej: .env.development)
 # Logs
 *.log
 npm-debug.log*
